@@ -1,1 +1,7 @@
-{"name":"album-cover-skill","version":"1.0.0","type":"module","description":"AI Album Cover Generator — AI-powered ai album cover generator","license":"MIT"}
+{
+  "name": "album-cover-skill",
+  "version": "1.0.1",
+  "type": "module",
+  "description": "AI Album Cover Generator — AI-powered ai album cover generator",
+  "license": "MIT"
+}
