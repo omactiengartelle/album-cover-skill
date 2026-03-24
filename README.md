@@ -103,3 +103,13 @@ When no prompt is provided, the script uses:
 ---
 
 Built with Claude Code · Powered by Neta
+
+## Example Output
+
+```bash
+node albumcover.js "professional album cover art, dramatic lighting, bold composition, music album aesthetic, high contrast, visually striking, suitable for streaming platforms"
+```
+
+![Example output](https://oss.talesofai.cn/picture/3ad8410d-cfab-4c14-91dd-70b52fae9ba6.webp)
+
+> Prompt: *"professional album cover art, dramatic lighting, bold composition, music album aesthetic, high contrast, visually striking, suitable for streaming platforms"*
