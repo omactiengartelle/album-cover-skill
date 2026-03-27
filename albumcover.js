@@ -28,8 +28,41 @@ if (!prompt) {
 const TOKEN = tokenFlag;
 
 if (!TOKEN) {
-  console.error('\n✗ Token required. Pass via: --token YOUR_TOKEN');
-console.error('  Get yours at: https://www.neta.art/open/'); {
+  console.error(
+    '\n✗ Token required. Pass via: --token YOUR_TOKEN'
+  );
+  process.exit(1);
+}
+
+// --- Size mapping ---
+const SIZES = {
+  square: { width: 1024, height: 1024 },
+  portrait: { width: 832, height: 1216 },
+  landscape: { width: 1216, height: 832 },
+  tall: { width: 704, height: 1408 },
+};
+
+const { width, height } = SIZES[size] || SIZES.square;
+
+// --- Headers ---
+const HEADERS = {
+  "x-token": TOKEN,
+  "x-platform": "nieta-app/web",
+  "content-type": "application/json",
+};
+
+// --- Build request body ---
+const body = {
+  storyId: "DO_NOT_USE",
+  jobType: "universal",
+  rawPrompt: [{ type: "freetext", value: prompt, weight: 1 }],
+  width,
+  height,
+  meta: { entrance: "PICTURE,VERSE" },
+  context_model_series: "8_image_edit",
+};
+
+if (refUuid) {
   body.inherit_params = {
     collection_uuid: refUuid,
     picture_uuid: refUuid,
@@ -38,7 +71,7 @@ console.error('  Get yours at: https://www.neta.art/open/'); {
 
 // --- Submit job ---
 async function makeImage() {
-  const res = await fetch(`https://api.talesofai.com/v3/make_image`, {
+  const res = await fetch("https://api.talesofai.cn/v3/make_image", {
     method: "POST",
     headers: HEADERS,
     body: JSON.stringify(body),
@@ -62,7 +95,7 @@ async function makeImage() {
 
 // --- Poll for result ---
 async function pollTask(taskUuid) {
-  const url = `https://api.talesofai.com/v1/artifact/task/${taskUuid}`;
+  const url = `https://api.talesofai.cn/v1/artifact/task/${taskUuid}`;
   const MAX_ATTEMPTS = 90;
   const INTERVAL_MS = 2000;
 
@@ -79,11 +112,9 @@ async function pollTask(taskUuid) {
     const data = await res.json();
     const status = data.task_status;
 
-    if (['PENDING', 'MODERATION'].includes(status)) { continue; }
-  if (['FAILURE', 'TIMEOUT', 'DELETED', 'ILLEGAL_IMAGE'].includes(status)) {
-    console.error('Error: generation failed with status ' + status + (pollData.err_msg ? ' — ' + pollData.err_msg : ''));
-    process.exit(1);
-  }
+    if (status === "PENDING" || status === "MODERATION") {
+      continue;
+    }
 
     // Done — extract image URL
     const imageUrl =
