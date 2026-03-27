@@ -62,6 +62,12 @@ node albumcover.js "lo-fi beats cover art" --token YOUR_TOKEN_HERE
 
 ---
 
+## Example Output
+
+![Generated example](https://oss.talesofai.cn/picture/3ad8410d-cfab-4c14-91dd-70b52fae9ba6.webp)
+
+---
+
 ## About Neta
 
 [Neta](https://www.neta.art/) (by TalesofAI) is an AI image and video generation platform with a powerful open API. It uses a **credit-based system (AP — Action Points)** where each image generation costs a small number of credits. Subscriptions are available for heavier usage.
@@ -105,7 +111,6 @@ node albumcover.js "your prompt" --token your_token_here
 > **API endpoint:** defaults to `api.talesofai.com` (Open Platform tokens).  
 > China users: set `NETA_API_BASE_URL=https://api.talesofai.com` to use the China endpoint.
 
-
 ---
 
 ## Output
@@ -125,6 +130,3 @@ When no prompt is provided, the script uses:
 
 > professional album cover art, dramatic lighting, bold composition, music album aesthetic, high contrast, visually striking, suitable for streaming platforms
 
----
-
-Built with [Claude Code](https://claude.ai/claude-code) · Powered by [Neta](https://www.neta.art/) · [Open Portal](https://www.neta.art/open/)

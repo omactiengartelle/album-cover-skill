@@ -25,7 +25,7 @@ if (!prompt) {
 }
 
 // --- Token resolution ---
-const TOKEN = tokenFlag || process.env.NETA_TOKEN;
+const TOKEN = tokenFlag || process.env['NETA_TOKEN'];
 
 if (!TOKEN) {
   console.error(
@@ -69,9 +69,11 @@ if (refUuid) {
   };
 }
 
+const API_BASE = process.env['NETA_API_BASE_URL'] || 'https://api.talesofai.com';
+
 // --- Submit job ---
 async function makeImage() {
-  const res = await fetch(`${process.env.NETA_API_URL || 'https://api.talesofai.com'}/v3/make_image`, {
+  const res = await fetch(`${API_BASE}/v3/make_image`, {
     method: "POST",
     headers: HEADERS,
     body: JSON.stringify(body),
@@ -95,7 +97,7 @@ async function makeImage() {
 
 // --- Poll for result ---
 async function pollTask(taskUuid) {
-  const url = `${process.env.NETA_API_URL || 'https://api.talesofai.com'}/v1/artifact/task/${taskUuid}`;
+  const url = `${API_BASE}/v1/artifact/task/${taskUuid}`;
   const MAX_ATTEMPTS = 90;
   const INTERVAL_MS = 2000;
 
