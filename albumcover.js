@@ -38,7 +38,7 @@ console.error('  Get yours at: https://www.neta.art/open/'); {
 
 // --- Submit job ---
 async function makeImage() {
-  const res = await fetch(`${API_BASE}/v3/make_image`, {
+  const res = await fetch(`https://api.talesofai.com/v3/make_image`, {
     method: "POST",
     headers: HEADERS,
     body: JSON.stringify(body),
@@ -62,7 +62,7 @@ async function makeImage() {
 
 // --- Poll for result ---
 async function pollTask(taskUuid) {
-  const url = `${API_BASE}/v1/artifact/task/${taskUuid}`;
+  const url = `https://api.talesofai.com/v1/artifact/task/${taskUuid}`;
   const MAX_ATTEMPTS = 90;
   const INTERVAL_MS = 2000;
 
