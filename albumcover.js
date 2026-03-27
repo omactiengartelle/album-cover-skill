@@ -25,51 +25,16 @@ if (!prompt) {
 }
 
 // --- Token resolution ---
-const TOKEN = tokenFlag || process.env['NETA_TOKEN'];
+const TOKEN = tokenFlag;
 
 if (!TOKEN) {
-  console.error(
-    "Error: NETA_TOKEN not found. Set it via --token, NETA_TOKEN env var, or in ~/.openclaw/workspace/.env"
-  );
-  process.exit(1);
-}
-
-// --- Size mapping ---
-const SIZES = {
-  square: { width: 1024, height: 1024 },
-  portrait: { width: 832, height: 1216 },
-  landscape: { width: 1216, height: 832 },
-  tall: { width: 704, height: 1408 },
-};
-
-const { width, height } = SIZES[size] || SIZES.square;
-
-// --- Headers ---
-const HEADERS = {
-  "x-token": TOKEN,
-  "x-platform": "nieta-app/web",
-  "content-type": "application/json",
-};
-
-// --- Build request body ---
-const body = {
-  storyId: "DO_NOT_USE",
-  jobType: "universal",
-  rawPrompt: [{ type: "freetext", value: prompt, weight: 1 }],
-  width,
-  height,
-  meta: { entrance: "PICTURE,CLI" },
-  context_model_series: "8_image_edit",
-};
-
-if (refUuid) {
+  console.error('\n✗ Token required. Pass via: --token YOUR_TOKEN');
+console.error('  Get yours at: https://www.neta.art/open/'); {
   body.inherit_params = {
     collection_uuid: refUuid,
     picture_uuid: refUuid,
   };
 }
-
-const API_BASE = process.env['NETA_API_BASE_URL'] || 'https://api.talesofai.com';
 
 // --- Submit job ---
 async function makeImage() {
