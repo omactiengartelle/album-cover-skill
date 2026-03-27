@@ -1,5 +1,7 @@
 # AI Album Cover Generator
 
+> Powered by the **Neta AI image generation API** (`api.talesofai.com`) — the same service as [neta.art](https://www.neta.art/open/).
+
 Generate stunning album cover art from a text description using AI. Powered by the Neta talesofai API — get back a direct image URL in seconds.
 
 ---
@@ -100,3 +102,7 @@ When no prompt is provided, the script uses:
 ## Example Output
 
 ![Generated example](https://oss.talesofai.cn/picture/3ad8410d-cfab-4c14-91dd-70b52fae9ba6.webp)
+
+---
+
+This skill requires a Neta API token (free trial available at https://www.neta.art/open/).
