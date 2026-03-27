@@ -66,21 +66,13 @@ node albumcover.js "lo-fi beats cover art" --token YOUR_TOKEN_HERE
 
 ## Token Setup
 
-The script resolves your API token in this order:
+This skill requires a Neta API token (free trial available at <https://www.neta.art/open/>).
 
-1. `--token` CLI flag
-2. `NETA_TOKEN` environment variable
+Pass it via the `--token` flag:
 
-**Recommended setup:**
 ```bash
+node <script> "your prompt" --token YOUR_TOKEN
 ```
-
-Or export it in your shell profile:
-```bash
-export NETA_TOKEN=your_token_here
-```
-
----
 
 ## Output
 
